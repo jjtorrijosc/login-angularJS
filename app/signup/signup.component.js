@@ -1,10 +1,10 @@
 'use strict';
 
 angular
-  .module('signin')
-  .component('signin', {
-    templateUrl: 'signin/signin.component.html',
-    controller: ['$location','userService', function SigninController($location,userService) {
+  .module('signup')
+  .component('signup', {
+    templateUrl: 'signup/signup.component.html',
+    controller: ['$location','userService', function signupController($location,userService) {
       
       this.userName = '';
       this.password = '';
@@ -12,9 +12,9 @@ angular
       
       this.errorPwdNoMatch = false;
 
-      this.signin = function signin() {
+      this.signup = function signup() {
         if (this.password == this.rePassword) {
-          if (userService.signin(this.userName,this.password)) {
+          if (userService.signup(this.userName,this.password)) {
             $location.path('/home');
           }
         } else {

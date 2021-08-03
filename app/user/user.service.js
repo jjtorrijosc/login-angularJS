@@ -18,7 +18,7 @@ class userService {
       this.userName = undefined;
     };
 
-    this.signin = function (user, pass) {
+    this.signup = function (user, pass) {
       var signinOK = false;
       //TODO: backend
       signinOK = true;

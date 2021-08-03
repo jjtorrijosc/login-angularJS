@@ -4,14 +4,13 @@
 angular.module('loginApp', [
   'ngRoute',
   'login',
-  'signin',
+  'signup',
   'home',
   'user'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  //$locationProvider.hashPrefix('/signin');
   $routeProvider.when('/login',{template: '<login></login>'});
-  $routeProvider.when('/signin',{template: '<signin></signin>'});
+  $routeProvider.when('/signup',{template: '<signup></signup>'});
   $routeProvider.when('/home',{template: '<home></home>'});
   $routeProvider.otherwise('/login');
 }])
