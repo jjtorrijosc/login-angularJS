@@ -1,0 +1,13 @@
+<div>
+    <div>User sessions:</div>
+    <div ng-if="$ctrl.userSessions">
+        <table>
+            <thead>
+                <th>Last sessions</th>
+            </thead>
+            <tr ng-repeat="userSession in $ctrl.userSessions">
+                <td>{{userSession.sessionDate}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
