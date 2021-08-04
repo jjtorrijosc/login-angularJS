@@ -4,14 +4,28 @@ angular.
   module('login').
   component('login', {
     templateUrl: 'login/login.component.html',
-    controller: ['$location','userService', function LoginCtrl($location,userService) {
+    controller: ['$location','userService','$http', function LoginCtrl($location, userService, $http) {
       this.userName = '';
       this.password = '';
+      this.loginError = false;
   
       this.login = function login() {
-        if (userService.login(this.userName,this.password)) {
-          $location.path('/home');
-        }
+        
+        var self = this;
+        $http({
+          method: 'POST',
+          url: 'http://localhost:8080/login?username='+this.userName+'&password='+this.password
+        }).then(function loginSuccess(response) {
+            if (response.data) {
+              self.loginError = false;
+              userService.login(self.userName);
+              $location.path('/home');
+            } else {
+              self.loginError = true;
+            }
+        }, function loginError(response) {
+            self.loginError = true;
+        });
       }
     }
     ]

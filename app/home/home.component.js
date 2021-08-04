@@ -4,12 +4,22 @@ angular
   .module('home')
   .component('home', {
     templateUrl: 'home/home.component.html',
-    controller: ['userService', function HomeCtrl(userService) {
+    controller: ['$http','userService', function HomeCtrl($http,userService) {
 
       this.userSessions = undefined;
+      this.userSessionsError = false;
 
       this.$onInit = function() {
-        this.userSessions = userService.userSessions();
+        var self = this;
+        $http.get(
+          'http://localhost:8080/user-sessions?username='+userService.userName,
+           {} //empty config
+           ).then(function (response){
+              self.userSessionsError = false;
+              self.userSessions = response.data;
+           }, function(response){
+              self.userSessionsError = true;
+           });
       }
     }
     ]

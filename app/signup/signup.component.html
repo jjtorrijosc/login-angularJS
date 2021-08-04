@@ -11,6 +11,9 @@
     <div ng-if="$ctrl.errorPwdNoMatch">
         The passwords does not match    
     </div>
+    <div ng-if="$ctrl.signupError">
+        {{$ctrl.signupError}}   
+    </div>
     <div>
         <button ng-click="$ctrl.signup()">Signup</button>
     </div>
